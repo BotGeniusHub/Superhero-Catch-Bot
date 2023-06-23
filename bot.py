@@ -6,7 +6,15 @@ TOKEN = '6206599982:AAECqgU3Os4kTjSuS_Zz-zcM7JZHWdvbI10'
 API_TOKEN = '803115424842504'
 MONGO_CONNECTION_STRING = 'mongodb+srv://sonu55:sonu55@cluster0.vqztrvk.mongodb.net/?retryWrites=true&w=majority'
 
-app = Client("my_bot", bot_token=TOKEN)
+api_id = '16743442'
+api_hash = '12bbd720f4097ba7713c5e40a11dfd2a'
+
+app = Client(
+    "my_bot",
+    bot_token=TOKEN,
+    api_id=api_id,
+    api_hash=api_hash
+)
 
 def spawn_character(client, message):
     # Check if the message count is a multiple of 10

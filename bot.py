@@ -24,7 +24,7 @@ def spawn_character(client, message):
 
         if response.status_code == 200:
             character_data = response.json()
-
+            print(character_data)
             character_name = character_data['name']
             character_image = character_data['image']['url']
 

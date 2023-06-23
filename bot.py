@@ -2,8 +2,8 @@ import requests
 from pyrogram import Client, filters, idle
 from pymongo import MongoClient
 
-TOKEN = 'YOUR_BOT_TOKEN'
-API_TOKEN = 'YOUR_SUPERHERO_API_TOKEN'
+TOKEN = '6206599982:AAECqgU3Os4kTjSuS_Zz-zcM7JZHWdvbI10'
+API_TOKEN = '803115424842504'
 MONGO_CONNECTION_STRING = 'mongodb+srv://sonu55:sonu55@cluster0.vqztrvk.mongodb.net/?retryWrites=true&w=majority'
 
 api_id = '16743442'

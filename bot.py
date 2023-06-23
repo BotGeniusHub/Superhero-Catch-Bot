@@ -16,6 +16,13 @@ app = Client(
     api_hash=api_hash
 )
 
+import random
+
+def get_random_character_id():
+    # Generate a random integer between 1 and 731 (total number of characters in the Superhero API)
+    return random.randint(1, 731)
+
+
 def spawn_character(client, message):
     # Check if the message count is a multiple of 10
     if message.message_id % 10 == 0:

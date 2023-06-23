@@ -1,5 +1,5 @@
 import requests
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from pymongo import MongoClient
 
 TOKEN = '6206599982:AAECqgU3Os4kTjSuS_Zz-zcM7JZHWdvbI10'
@@ -20,7 +20,7 @@ def spawn_character(client, message):
     # Check if the message count is a multiple of 10
     if message.message_id % 10 == 0:
         # Fetch a random Marvel character from the Superhero API
-        response = requests.get('https://superheroapi.com/api/{0}/RANDOM_ID'.format(API_TOKEN))
+        response = requests.get(f'https://superheroapi.com/api/{API_TOKEN}/RANDOM_ID')
 
         if response.status_code == 200:
             character_data = response.json()
@@ -55,9 +55,7 @@ def save_character_info(character_name, character_image, chat_id, user_id):
     collection.insert_one(info)
 
 def main():
-    app = Client("my_bot", bot_token=TOKEN)
-
-    @app.on_message(Filters.group & Filters.command("protecc"))
+    @app.on_message(filters.group & filters.command("protecc"))
     def handle_protect_command(client, message):
         # Retrieve the protected characters for the current chat from MongoDB
         protected_characters = get_protected_characters(message.chat.id)
@@ -85,10 +83,11 @@ def main():
         protected_characters = collection.distinct('character_name', {'chat_id': chat_id})
         return protected_characters
 
-    @app.on_message(Filters.group)
+    @app.on_message(filters.group)
     def handle_group_message(client, message):
         spawn_character(client, message)
 
-app.run()
-idle() 
+    app.run()
 
+if __name__ == '__main__':
+    main()

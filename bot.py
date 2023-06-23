@@ -17,7 +17,7 @@ app = Client(
 )
 
 def spawn_character(client, message):
-    if message.message_id % 10 == 0:
+    if message.message_id.message_id % 10 == 0:
         character_id = get_random_character_id()
         response = requests.get(f'https://superheroapi.com/api/{API_TOKEN}/{character_id}')
 
@@ -28,17 +28,17 @@ def spawn_character(client, message):
             character_image = character_data['image']['url']
             character_ability = character_data['powerstats']['intelligence']
 
-            message = client.send_photo(
+            sent_message = client.send_photo(
                 chat_id=message.chat.id,
                 photo=character_image,
-                caption=f"A wild {character_name} appeared! Protect them!"
+                caption=f"A new Character {character_name} appeared! Type /protect name to collect them!"
             )
 
-            save_character_info(character_name, character_image, character_ability, character_id, message.chat.id, message.from_user.id)
+            save_character_info(character_name, character_image, character_ability, character_id, message.chat.id, message.from_user.id, sent_message.message_id)
         else:
             print("Failed to fetch a character from the Superhero API.")
 
-def save_character_info(character_name, character_image, character_ability, character_id, chat_id, user_id):
+def save_character_info(character_name, character_image, character_ability, character_id, chat_id, user_id, message_id):
     client = MongoClient(MONGO_CONNECTION_STRING)
     db = client['my_bot_db']
     collection = db['character_info']
@@ -49,10 +49,13 @@ def save_character_info(character_name, character_image, character_ability, char
         'character_ability': character_ability,
         'character_id': character_id,
         'chat_id': chat_id,
-        'user_id': user_id
+        'user_id': user_id,
+        'message_id': message_id
     }
 
     collection.insert_one(info)
+
+# Rest of the code remains the same
 
 @app.on_message(filters.group & filters.command("protecc"))
 def handle_protect_command(client, message):

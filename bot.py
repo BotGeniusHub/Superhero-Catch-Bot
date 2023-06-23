@@ -1,5 +1,5 @@
 import requests
-from pyrogram import Client, Filters, idle
+from pyrogram import Client, filters, idle
 from pymongo import MongoClient
 
 TOKEN = '6206599982:AAECqgU3Os4kTjSuS_Zz-zcM7JZHWdvbI10'

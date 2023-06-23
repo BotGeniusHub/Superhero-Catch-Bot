@@ -39,7 +39,7 @@ def spawn_character(client, message):
                 caption=f"A new Character {character_name} appeared! Type /protect name to collect them!"
             )
 
-            save_character_info(character_name, character_image, character_ability, character_id, message.chat.id, message.from_user.id, sent_message.message_id)
+            save_character_info(character_name, character_image, character_ability, character_id, message.chat.id, message.from_user.id)
         else:
             print("Failed to fetch a character from the Superhero API.")
 
@@ -69,7 +69,7 @@ def handle_protect_command(client, message):
     if protected_characters:
         reply = "Protected Characters:\n\n"
         for character in protected_characters:
-            reply += f"- {character['character_name']} (Ability: {character['character_ability']})\n"
+            reply += f" {character['character_name']} (Ability: {character['character_ability']})\n"
 
         client.send_message(
             chat_id=message.chat.id,

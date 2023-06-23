@@ -120,4 +120,4 @@ def handle_group_message(client, message):
     spawn_character(client, message)
 
 app.run()
-idle() 
+idle()

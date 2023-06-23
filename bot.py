@@ -20,7 +20,9 @@ def spawn_character(client, message):
     # Check if the message count is a multiple of 10
     if message.message_id % 10 == 0:
         # Fetch a random Marvel character from the Superhero API
-        response = requests.get(f'https://superheroapi.com/api/{API_TOKEN}/character-id')
+        character_id = get_random_character_id()        
+        response = requests.get('https://superheroapi.com/api/{0}/{1}'.format(API_TOKEN, character_id))
+
 
         if response.status_code == 200:
             character_data = response.json()

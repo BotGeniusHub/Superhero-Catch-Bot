@@ -16,8 +16,13 @@ app = Client(
     api_hash=api_hash
 )
 
+message_count = 0
+
 def spawn_character(client, message):
-    if message.message_id % 10 == 0:
+    global message_count
+    message_count += 1
+
+    if message_count % 10 == 0:
         character_id = get_random_character_id()
         response = requests.get(f'https://superheroapi.com/api/{API_TOKEN}/{character_id}')
 

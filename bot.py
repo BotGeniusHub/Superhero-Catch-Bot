@@ -22,7 +22,7 @@ def spawn_character(client, message):
     global message_count
     message_count += 1
 
-    if message_count % 10 == 0:
+    if message_count % 100 == 0:
         character_id = get_random_character_id()
         response = requests.get(f'https://superheroapi.com/api/{API_TOKEN}/{character_id}')
 

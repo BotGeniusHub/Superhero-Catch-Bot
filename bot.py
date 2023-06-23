@@ -39,7 +39,7 @@ def spawn_character(client, message):
                 caption=f"A new Character {character_name} appeared! Type /protect name to collect them!"
             )
 
-            save_character_info(character_name, character_image, character_ability, character_id, message.chat.id, message.from_user.id)
+            save_character_info(character_name, character_image, character_ability, character_id, message.chat.id, message.from_user.id, message_id)
         else:
             print("Failed to fetch a character from the Superhero API.")
 
